@@ -1,0 +1,21 @@
+<head>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+<form method="POST" action="{% url 'login' %}">
+<table>
+{{ form }}
+{% csrf_token %}
+<tr><th></th><td>
+<div class="g-recaptcha" data-sitekey="6LdMLhUUAAAAADFgOPZo2qHjbV2pdq5xUudSkZ0k"></div>
+</td></tr>
+<tr><th></th><td><input type="submit"/></td></tr>
+</table>
+</form>
+
+<a href="{% url 'register' %}">register</a>
+
+
+</body>
+
+

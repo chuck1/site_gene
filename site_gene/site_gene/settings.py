@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'site_gene.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'site_gene.sqlite3'),
     }
 }
 
@@ -101,3 +101,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_URL = '/gene/login/'
+
+
+
+SECRET_SETTINGS = {}
+with open(os.path.join(BASE_DIR, 'site_gene_secret_settings.txt'), 'r') as f:
+    for line in f.readlines():
+        SECRET_SETTINGS[line[:line.index('=')]] = line[line.index('='):]
+
+
+
+
+

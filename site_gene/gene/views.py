@@ -1,10 +1,19 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http.response import HttpResponseRedirect
+from django.contrib.auth import authenticate
+import django.contrib.auth
+from django.conf import settings
 
-# Create your views here.
-
+import json
+import urllib2
+import urllib
 import graphviz
 
 from .models import *
+from .forms import *
+
 
 class Graph(object):
     def __init__(self):
@@ -40,6 +49,7 @@ class Graph(object):
         
             self.g.edge(pp, "person_{}".format(p.pk))
         
+@login_required
 def relation(request, pk1, pk2):
 
     p1 = get_object_or_404(Person, pk=pk1)
@@ -101,6 +111,7 @@ def relation(request, pk1, pk2):
     print "{} and {} are {} cousins {} times removed".format(p1, p2, x, y)
 
 
+@login_required
 def ancestors(request, person_pk):
     
     person = get_object_or_404(Person, pk=person_pk)
@@ -124,6 +135,7 @@ def ancestors(request, person_pk):
     context = {}
     return render(request, "gene/index.html", context)    
 
+@login_required
 def descendents(request, person_pk):
     
     person = get_object_or_404(Person, pk=person_pk)
@@ -146,11 +158,13 @@ def descendents(request, person_pk):
     context = {}
     return render(request, "gene/index.html", context)    
 
-
+@login_required
 def index(request):
 
     # test
-    relation(None, 5, 20)
+    relation(request, 5, 20)
+
+    
 
     g = Graph()
     g.g = graphviz.Digraph(format='png')
@@ -170,15 +184,79 @@ def index(request):
 
     g.g.render('gene/static/gene/graph.gv')
 
-    context = {}
+    context = {'user':request.user}
     return render(request, "gene/index.html", context)    
 
 
+def send_post_to_google(response, remoteip):
+
+    print "SECRET SETTINGS",settings.SECRET_SETTINGS
+
+    post_data = [
+            ('secret', settings.SECRET_SETTINGS['recaptcha_secret_key']),
+            ('response', response),
+            ('remoteip', remoteip),
+            ]
+
+    result = urllib2.urlopen('https://www.google.com/recaptcha/api/siteverify', urllib.urlencode(post_data))
+    content = result.read()
+
+    content = json.loads(content)
+
+    print "respnose from google", content
+
+    return content['success']
+
+def captcha(request):
+    
+    return send_post_to_google(request.POST['g-recaptcha-response'], request.META['REMOTE_ADDR'])
+
+def register(request):
+    
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
 
 
+        # create a form instance and populate it with data from the request:
+        form = RegisterForm(request.POST)
+
+        form.captcha = captcha(request)
+
+        # check whether it's valid:
+        if form.is_valid():
+            # redirect to a new URL:
+            return HttpResponseRedirect('/gene/')
+    
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RegisterForm()
+    
+    return render(request, 'gene/register.html', {'form': form})
+
+def login(request):
+    
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+
+        form = LoginForm(request.POST)
+
+        form.captcha = captcha(request)
+        
+        if form.is_valid():
+            django.contrib.auth.login(request, form.user_cache)
+
+            return HttpResponseRedirect('/gene/')
+
+        else:
+            print 'login not valid'
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = LoginForm()
 
 
-
+    return render(request, 'gene/login.html', {'form': form})
 
 
 
