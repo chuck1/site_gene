@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 import django.contrib.auth
 from django.conf import settings
 
+import os
 import json
 import urllib2
 import urllib
@@ -48,7 +49,13 @@ class Graph(object):
             pp = self.check_parent_pair(p.mother, p.father)
         
             self.g.edge(pp, "person_{}".format(p.pk))
-        
+
+    def render(self):       
+    	self.g.render(os.path.join(
+                settings.STATIC_ROOT, 
+                'gene/graph.gv'))
+
+ 
 @login_required
 def relation(request, pk1, pk2):
 
@@ -117,20 +124,21 @@ def ancestors(request, person_pk):
     person = get_object_or_404(Person, pk=person_pk)
  
     an = person.ancestors() + [person]
- 
-    g = graphviz.Digraph(format='png')
+
+    g = Graph() 
+    g.g = graphviz.Digraph(format='png')
    
     for p in an:
         
-        g.node("person_{}".format(p.pk), str(p))
+        g.g.node("person_{}".format(p.pk), str(p))
         
         if p.mother:
-            g.edge("person_{}".format(p.mother.pk), "person_{}".format(p.pk))
+            g.g.edge("person_{}".format(p.mother.pk), "person_{}".format(p.pk))
         
         if p.father:
-            g.edge("person_{}".format(p.father.pk), "person_{}".format(p.pk))
+            g.g.edge("person_{}".format(p.father.pk), "person_{}".format(p.pk))
 
-    g.render('gene/static/gene/graph.gv')
+    g.render()
 
     context = {}
     return render(request, "gene/index.html", context)    
@@ -153,7 +161,7 @@ def descendents(request, person_pk):
         for d in p.person_father.all():
             g.edge("person_{}".format(p.pk), "person_{}".format(d.pk))
 
-    g.render('gene/static/gene/graph.gv')
+    g.render(os.path.join(settings.BSAE_DIR, 'gene/static/gene/graph.gv'))
 
     context = {}
     return render(request, "gene/index.html", context)    
@@ -182,7 +190,7 @@ def index(request):
 
     #print g.g.source
 
-    g.g.render('gene/static/gene/graph.gv')
+    g.render()
 
     context = {'user':request.user}
     return render(request, "gene/index.html", context)    

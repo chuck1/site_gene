@@ -1,59 +1,31 @@
 digraph {
-	person_1 [label="Susan Kay Donaldson"]
-	pp_13_14 [label=""]
-		person_13 -> pp_13_14
-		person_14 -> pp_13_14
-		pp_13_14 -> person_1
-	person_2 [label="Charles David Rymal"]
-	pp_10_9 [label=""]
-		person_10 -> pp_10_9
-		person_9 -> pp_10_9
-		pp_10_9 -> person_2
-	person_3 [label="Charles Joseph Rymal"]
-	pp_1_2 [label=""]
-		person_1 -> pp_1_2
-		person_2 -> pp_1_2
-		pp_1_2 -> person_3
-	person_4 [label="Sandra Lee Windsor"]
-	pp_12_11 [label=""]
-		person_12 -> pp_12_11
-		person_11 -> pp_12_11
-		pp_12_11 -> person_4
-	person_5 [label="Charles Lincoln Rymal"]
-	pp_6_3 [label=""]
-		person_6 -> pp_6_3
-		person_3 -> pp_6_3
-		pp_6_3 -> person_5
 	person_6 [label="Jessica Marie Stahl"]
-	pp_4_7 [label=""]
-		person_4 -> pp_4_7
-		person_7 -> pp_4_7
-		pp_4_7 -> person_6
-	person_7 [label="Jeffrey Benerd Stahl"]
-	pp_8_21 [label=""]
-		person_8 -> pp_8_21
-		person_21 -> pp_8_21
-		pp_8_21 -> person_7
-	person_8 [label="Rosemary \"Rosie\" Kelly"]
-	person_9 [label="Charles Russel Rymal"]
-	person_10 [label="Welna Hoffsteader"]
-	person_11 [label="Clinton Windsor"]
+		person_4 -> person_6
+		person_7 -> person_6
+	person_4 [label="Sandra Lee Windsor"]
+		person_12 -> person_4
+		person_11 -> person_4
 	person_12 [label="Carol James"]
+	person_11 [label="Clinton Windsor"]
+	person_7 [label="Jeffrey Benerd Stahl"]
+		person_8 -> person_7
+		person_21 -> person_7
+	person_8 [label="Rosemary \"Rosie\" Kelly"]
+	person_21 [label="John Stahl"]
+	person_3 [label="Charles Joseph Rymal"]
+		person_1 -> person_3
+		person_2 -> person_3
+	person_1 [label="Susan Kay Donaldson"]
+		person_13 -> person_1
+		person_14 -> person_1
 	person_13 [label="Patricia Bates"]
 	person_14 [label="John \"Jack\" Donaldson"]
-	person_15 [label="Heather Eva Rymal"]
-		pp_1_2 -> person_15
-	person_16 [label="Erin Rene Stahl"]
-		pp_4_7 -> person_16
-	person_17 [label="Nicholas Jeffrey Stahl"]
-		pp_4_7 -> person_17
-	person_18 [label="Michael Bradley Stahl"]
-		pp_4_7 -> person_18
-	person_19 [label="Ryan Tyler Willden"]
-	person_20 [label="Makinlee Lynn Willden"]
-	pp_16_19 [label=""]
-		person_16 -> pp_16_19
-		person_19 -> pp_16_19
-		pp_16_19 -> person_20
-	person_21 [label="John Stahl"]
+	person_2 [label="Charles David Rymal"]
+		person_10 -> person_2
+		person_9 -> person_2
+	person_10 [label="Welna Hoffsteader"]
+	person_9 [label="Charles Russel Rymal"]
+	person_5 [label="Charles Lincoln Rymal"]
+		person_6 -> person_5
+		person_3 -> person_5
 }

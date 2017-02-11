@@ -16,16 +16,24 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+SECRET_SETTINGS = {}
+with open(os.path.join(BASE_DIR, 'site_gene_secret_settings.txt'), 'r') as f:
+    for line in f.readlines():
+        SECRET_SETTINGS[line[:line.index('=')]] = line[line.index('='):]
+
+
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#13*w=dcov27ldi3ml#7@23kf15lsoyqa101&oa=x%0x5$8%89'
+SECRET_KEY = SECRET_SETTINGS['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.162.1.101', '*']
 
 
 # Application definition
@@ -45,10 +53,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
 )
 
 ROOT_URLCONF = 'site_gene.urls'
@@ -104,12 +112,7 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/gene/login/'
 
-
-
-SECRET_SETTINGS = {}
-with open(os.path.join(BASE_DIR, 'site_gene_secret_settings.txt'), 'r') as f:
-    for line in f.readlines():
-        SECRET_SETTINGS[line[:line.index('=')]] = line[line.index('='):]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
