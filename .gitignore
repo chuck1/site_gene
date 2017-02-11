@@ -1,2 +1,3 @@
 *.pyc
 *.sqlite3
+site_gene/site_gene_secret_settings.txt
