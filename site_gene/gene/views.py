@@ -169,10 +169,6 @@ def descendents(request, person_pk):
 @login_required
 def index(request):
 
-    # test
-    relation(request, 5, 20)
-
-    
 
     g = Graph()
     g.g = graphviz.Digraph(format='png')
