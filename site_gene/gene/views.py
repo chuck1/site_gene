@@ -82,15 +82,15 @@ def relation(request, pk1, pk2):
     md1 = 10000
     md2 = 10000
 
-    print "an1"
+    #print "an1"
     for a in an1:
         md1 = min(md1, a[1])
-        print "  {:32}{:6}".format(a[0],a[1])
+        #print "  {:32}{:6}".format(a[0],a[1])
 
-    print "an2"
+    #print "an2"
     for a in an2:
         md2 = min(md2, a[1])
-        print "  {:32}{:6}".format(a[0],a[1])
+        #print "  {:32}{:6}".format(a[0],a[1])
 
     def f1a(a):
         return a[1] <= md1
@@ -101,15 +101,15 @@ def relation(request, pk1, pk2):
     an1 = filter(f1a, an1)
     an2 = filter(f2a, an2)
  
-    print "an1"
+    #print "an1"
     for a in an1:
-        md1 = min(md1, a[1])
-        print "  {:32}{:6}".format(a[0],a[1])
+        #print "  {:32}{:6}".format(a[0],a[1])
+        pass
 
-    print "an2"
+    #print "an2"
     for a in an2:
-        md1 = min(md1, a[1])
-        print "  {:32}{:6}".format(a[0],a[1])
+        #print "  {:32}{:6}".format(a[0],a[1])
+        pass
     
     
     x = min(md1, md2)
