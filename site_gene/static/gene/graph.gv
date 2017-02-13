@@ -34,13 +34,26 @@ digraph {
 		person_8 -> pp_8_21
 		person_21 -> pp_8_21
 		pp_8_21 -> person_7
-	person_8 [label="Rosemary \"Rosie\" Kelly"]
-	person_9 [label="Charles Russel Rymal"]
-	person_10 [label="Welna Hoffsteader"]
+	person_8 [label="Rosemary Kelly"]
+	person_9 [label="Charles Russell Rymal
+1918"]
+	pp_55_27 [label=""]
+		person_55 -> pp_55_27
+		person_27 -> pp_55_27
+		pp_55_27 -> person_9
+	person_10 [label="Welna Bess Hufstedler"]
+	pp_23_22 [label=""]
+		person_23 -> pp_23_22
+		person_22 -> pp_23_22
+		pp_23_22 -> person_10
 	person_11 [label="Clinton Windsor"]
 	person_12 [label="Carol James"]
-	person_13 [label="Patricia Bates"]
-	person_14 [label="John \"Jack\" Donaldson"]
+	person_13 [label="Patricia Ann Bates"]
+	person_14 [label="John Donaldson"]
+	pp_30_29 [label=""]
+		person_30 -> pp_30_29
+		person_29 -> pp_30_29
+		pp_30_29 -> person_14
 	person_15 [label="Heather Eva Rymal"]
 		pp_1_2 -> person_15
 	person_16 [label="Erin Rene Stahl"]
@@ -55,5 +68,136 @@ digraph {
 		person_16 -> pp_16_19
 		person_19 -> pp_16_19
 		pp_16_19 -> person_20
-	person_21 [label="John Stahl"]
+	person_21 [label="John Langston Stahl"]
+	person_22 [label="Eli Virgil Hufstedler"]
+	pp_24_35 [label=""]
+		person_24 -> pp_24_35
+		person_35 -> pp_24_35
+		pp_24_35 -> person_22
+	person_23 [label="Iva Dell Lawler"]
+	person_24 [label="William Henry Hufstedler"]
+	pp_36_25 [label=""]
+		person_36 -> pp_36_25
+		person_25 -> pp_36_25
+		pp_36_25 -> person_24
+	person_25 [label="John Hufstedler 1805"]
+	pp_54_26 [label=""]
+		person_54 -> pp_54_26
+		person_26 -> pp_54_26
+		pp_54_26 -> person_25
+	person_26 [label="Jacob S Hufstutler 1785"]
+	pp_None_47 [label=""]
+		person_47 -> pp_None_47
+		pp_None_47 -> person_26
+	person_27 [label="Charles Frederick Rymal
+1887"]
+	pp_49_28 [label=""]
+		person_49 -> pp_49_28
+		person_28 -> pp_49_28
+		pp_49_28 -> person_27
+	person_28 [label="Charles Rymal"]
+	person_29 [label="John Manley Donaldson"]
+	pp_31_32 [label=""]
+		person_31 -> pp_31_32
+		person_32 -> pp_31_32
+		pp_31_32 -> person_29
+	person_30 [label="Eva Capps"]
+	pp_34_33 [label=""]
+		person_34 -> pp_34_33
+		person_33 -> pp_34_33
+		pp_34_33 -> person_30
+	person_31 [label="Minnie Louise Perkins"]
+	person_32 [label="Joseph Duncan Donaldson"]
+	person_33 [label="James Sylvester Capps"]
+	person_34 [label="Mary Omie Porterfield"]
+	person_35 [label="Rebecca Beneva Campbell"]
+	pp_53_52 [label=""]
+		person_53 -> pp_53_52
+		person_52 -> pp_53_52
+		pp_53_52 -> person_35
+	person_36 [label="Elizabeth Russell"]
+	pp_None_37 [label=""]
+		person_37 -> pp_None_37
+		pp_None_37 -> person_36
+	person_37 [label="Lewis Russell"]
+	pp_42_38 [label=""]
+		person_42 -> pp_42_38
+		person_38 -> pp_42_38
+		pp_42_38 -> person_37
+	person_38 [label="George Russell"]
+	pp_None_39 [label=""]
+		person_39 -> pp_None_39
+		pp_None_39 -> person_38
+	person_39 [label="William Russell"]
+	pp_41_40 [label=""]
+		person_41 -> pp_41_40
+		person_40 -> pp_41_40
+		pp_41_40 -> person_39
+	person_40 [label="John Russell"]
+	person_41 [label="Alicia Billington"]
+	person_42 [label="Elizabeth Bean"]
+	pp_None_43 [label=""]
+		person_43 -> pp_None_43
+		pp_None_43 -> person_42
+	person_43 [label="William Bean 1700"]
+	pp_None_44 [label=""]
+		person_44 -> pp_None_44
+		pp_None_44 -> person_43
+	person_44 [label="John Bean
+1675"]
+	pp_None_45 [label=""]
+		person_45 -> pp_None_45
+		pp_None_45 -> person_44
+	person_45 [label="William Bean 1655"]
+	pp_None_46 [label=""]
+		person_46 -> pp_None_46
+		pp_None_46 -> person_45
+	person_46 [label="William Bean 1635"]
+	person_47 [label="Jacob Hufstettler
+1746"]
+	pp_None_48 [label=""]
+		person_48 -> pp_None_48
+		pp_None_48 -> person_47
+	person_48 [label="Hans Johan Jakob Hoffstadler
+1701"]
+	person_49 [label=Unknown]
+	person_52 [label="Judge C Campbell"]
+	person_53 [label="Martha Freeman"]
+	person_54 [label="Alcey Moore 1785"]
+	person_55 [label="Etta Lavina Wismer
+1896"]
+	pp_57_56 [label=""]
+		person_57 -> pp_57_56
+		person_56 -> pp_57_56
+		pp_57_56 -> person_55
+	person_56 [label="Norman Wismer
+1868"]
+	pp_59_58 [label=""]
+		person_59 -> pp_59_58
+		person_58 -> pp_59_58
+		pp_59_58 -> person_56
+	person_57 [label="Deborah Mazina Clark
+1870"]
+	person_58 [label="Isaac Grobb Wismer
+1827"]
+	pp_61_60 [label=""]
+		person_61 -> pp_61_60
+		person_60 -> pp_61_60
+		pp_61_60 -> person_58
+	person_59 [label="Anna Moyer
+1829"]
+	person_60 [label="Abraham Wismer
+1803"]
+	pp_None_62 [label=""]
+		person_62 -> pp_None_62
+		pp_None_62 -> person_60
+	person_61 [label="Susanna Grobb
+1809"]
+	person_62 [label="Isaac Wismer
+1782"]
+	pp_None_63 [label=""]
+		person_63 -> pp_None_63
+		pp_None_63 -> person_62
+	person_63 [label="Abraham Wismer
+1756"]
 }

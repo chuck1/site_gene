@@ -181,7 +181,8 @@ def index(request):
     for p in Person.objects.all():
         print str(p)
         
-        g.g.node("person_{}".format(p.pk), str(p))
+        p.graph_node(g.g)
+        #g.g.node("person_{}".format(p.pk), str(p))
         
         g.connect_parents(p)
 

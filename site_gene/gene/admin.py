@@ -4,5 +4,9 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    ordering = ('name',)
+
+admin.site.register(Person, PersonAdmin)
+admin.site.register(Location)
 

@@ -1,12 +1,40 @@
 from django.db import models
 
-# Create your models here.
+
+
+class Location(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __unicode__(self):
+        return self.name
 
 class Person(models.Model):
     name = models.CharField(max_length=256)
-    mother = models.ForeignKey('Person', related_name='person_mother', blank=True, null=True)
-    father = models.ForeignKey('Person', related_name='person_father', blank=True, null=True)
- 
+    mother = models.ForeignKey(
+        'Person', 
+        related_name='person_mother', 
+        blank=True, null=True)
+    father = models.ForeignKey(
+        'Person', 
+        related_name='person_father', 
+        blank=True, null=True)
+    birth_year     = models.IntegerField(blank=True, null=True)
+    birth_month    = models.IntegerField(blank=True, null=True)
+    birth_day      = models.IntegerField(blank=True, null=True)
+    birth_location = models.ForeignKey(
+        Location,
+        related_name = 'location_birth',
+        blank=True,
+        null=True)
+    death_year     = models.IntegerField(blank=True, null=True)
+    death_month    = models.IntegerField(blank=True, null=True)
+    death_day      = models.IntegerField(blank=True, null=True)
+    death_location = models.ForeignKey(
+        Location,
+        related_name = 'location_death',
+        blank=True,
+        null=True)
+
     def ancestors_distance(self, d):
 
         an = []
@@ -44,5 +72,19 @@ class Person(models.Model):
 
         return de1 + de2
 
+    def graph_node(self, g):
+        if self.birth_year is not None:
+            label = "{}\n{}".format(self.name, self.birth_year)
+        else:
+            label = "{}".format(self.name)
+
+        g.node("person_{}".format(self.pk), label)
+            
+
+
     def __unicode__(self):
-        return self.name
+        return "{} {}-{}".format(self.name, self.birth_year, self.death_year)
+
+
+
+
