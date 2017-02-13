@@ -35,6 +35,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['192.162.1.101', '*']
 
+INTERNAL_IPS = ['192.168.1.1']
 
 # Application definition
 
@@ -113,8 +114,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = '/gene/login/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
 
 
 
