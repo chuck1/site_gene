@@ -75,6 +75,9 @@ digraph {
 		person_35 -> pp_24_35
 		pp_24_35 -> person_22
 	person_23 [label="Iva Dell Lawler"]
+	pp_None_83 [label=""]
+		person_83 -> pp_None_83
+		pp_None_83 -> person_23
 	person_24 [label="William Henry Hufstedler"]
 	pp_36_25 [label=""]
 		person_36 -> pp_36_25
@@ -287,4 +290,16 @@ digraph {
 		pp_None_82 -> person_81
 	person_82 [label="Pieter Janszoon Quackenbosch
 1588"]
+	person_83 [label="Nicholas Davis Lawler
+1830"]
+	pp_None_84 [label=""]
+		person_84 -> pp_None_84
+		pp_None_84 -> person_83
+	person_84 [label="Martin Lawler
+1787"]
+	pp_None_85 [label=""]
+		person_85 -> pp_None_85
+		pp_None_85 -> person_84
+	person_85 [label="Nicholas Lawler
+1743"]
 }
