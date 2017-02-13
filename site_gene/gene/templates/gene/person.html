@@ -1,0 +1,15 @@
+<h1>{{ person.name }}</h1>
+
+<p>
+mother:{% if person.mother %}<a href={% url 'person' person.mother.pk %}>{{ person.mother }}</a>{% endif %}
+</p>
+<p>
+father:{% if person.father %}<a href={% url 'person' person.father.pk %}>{{ person.father }}</a>{% endif %}
+</p>
+
+children:
+{% for c in children %}
+<a href={% url 'person' c.pk %}>{{ c }}</a></br>
+{% endfor %}
+
+

@@ -1,5 +1,5 @@
 from django.db import models
-
+import django.urls
 
 
 class Location(models.Model):
@@ -62,6 +62,9 @@ class Person(models.Model):
 
         return an
 
+    def children(self):
+        return list(self.person_mother.all()) + list(self.person_father.all())
+
     def descendents(self):
         
         de1 = list(self.person_mother.all()) + list(self.person_father.all())
@@ -78,7 +81,9 @@ class Person(models.Model):
         else:
             label = "{}".format(self.name)
 
-        g.node("person_{}".format(self.pk), label)
+        url = django.urls.reverse('person', args=[self.pk])
+
+        g.node("person_{}".format(self.pk), label, URL=url)
             
 
 

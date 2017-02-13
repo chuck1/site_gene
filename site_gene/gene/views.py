@@ -16,6 +16,11 @@ from .models import *
 from .forms import *
 
 
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
 class Graph(object):
     def __init__(self):
         self.parent_pairs = []
@@ -54,6 +59,19 @@ class Graph(object):
     	self.g.render(os.path.join(
                 settings.STATIC_ROOT, 
                 'gene/graph.gv'))
+    	
+        self.g.format = 'cmapx'
+
+	self.g.render(os.path.join(
+                settings.STATIC_ROOT, 
+                'gene/graph.gv'))
+
+def pie_chart():
+    fig = plt.figure()
+    plt.pie([10,20,30,40])
+    fig.savefig(os.path.join(
+                settings.STATIC_ROOT, 
+                'gene/pie.png'))
 
  
 @login_required
@@ -129,12 +147,10 @@ def ancestors(request, person_pk):
     g.g = graphviz.Digraph(format='png')
    
     for p in an:
-        
-        g.g.node("person_{}".format(p.pk), str(p))
-        
+        p.graph_node(g.g)
+
         if p.mother:
             g.g.edge("person_{}".format(p.mother.pk), "person_{}".format(p.pk))
-        
         if p.father:
             g.g.edge("person_{}".format(p.father.pk), "person_{}".format(p.pk))
 
@@ -161,7 +177,7 @@ def descendents(request, person_pk):
         for d in p.person_father.all():
             g.edge("person_{}".format(p.pk), "person_{}".format(d.pk))
 
-    g.render(os.path.join(settings.BSAE_DIR, 'gene/static/gene/graph.gv'))
+    g.render(os.path.join(settings.BASE_DIR, 'gene/static/gene/graph.gv'))
 
     context = {}
     return render(request, "gene/index.html", context)    
@@ -169,27 +185,33 @@ def descendents(request, person_pk):
 @login_required
 def index(request):
 
+    #pie_chart()
+    
+    print "GET"
+    for l in request.GET:
+        print l
+
+
 
     g = Graph()
-    g.g = graphviz.Digraph(format='png')
+    g.g = graphviz.Digraph(name="graph", format='png')
 
-    print
     for p in Person.objects.all():
-        print str(p)
         
         p.graph_node(g.g)
-        #g.g.node("person_{}".format(p.pk), str(p))
         
         g.connect_parents(p)
 
-    print
 
-
-    #print g.g.source
 
     g.render()
 
+
     context = {'user':request.user}
+    
+    with open(os.path.join(settings.STATIC_ROOT, 'gene/graph.gv.cmapx'), 'r') as f:
+        context['cmap'] = f.read()
+    
     return render(request, "gene/index.html", context)    
 
 
@@ -260,9 +282,17 @@ def login(request):
     else:
         form = LoginForm()
 
-
     return render(request, 'gene/login.html', {'form': form})
 
+@login_required
+def person(request, pk):
+    person = get_object_or_404(Person, pk=pk)
+
+    children = person.children()
+
+    context = {'person': person, 'children': children}
+
+    return render(request, 'gene/person.html', context)
 
 
 
